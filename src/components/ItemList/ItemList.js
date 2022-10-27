@@ -1,13 +1,30 @@
 import { Link } from "react-router-dom"
 
-const ItemList = ({ products }) => {
+const ItemList = ({ products }) => {    
+
+    const handleClick = (e) => {
+        //detiene la propagacion del evento a los ancestos
+        e.stopPropagation()
+        console.log('hice click en Itemlist')
+    }
+
+    const handleSubmit = (e) => {
+        //detiene la accion por defecto del submit, que es recargar la pagina
+        e.preventDefault()
+
+    }
+
     return (
-        // <ul className={true ? 'una-clase' : 'otra-clase'}>
-         <ul style={{display: 'flex', flexDirection: 'column'}}>
-            { products.map(product => <Link to={`/detail/${product.id}`}key={product.id}>{product.name}</Link>) }
-            {/* { false ? <h1>hola</h1> : <h1>chau</h1>} */}
-        </ul>
+        <div>
+            <ul style={{display: 'flex', flexDirection: 'column', backgroundColor: 'red'}} onClick={handleClick}>
+                { products.map(product => <Link to={`/detail/${product.id}`}key={product.id}>{product.name}</Link>) }
+            </ul>
+            <form onSubmit={handleSubmit}>
+                <input />
+                <button onClick={() => console.log ('submit del form') }>Submit</button>
+            </form>
+        </div>
     )
-}
+} 
 
 export default ItemList
