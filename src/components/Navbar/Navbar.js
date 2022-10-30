@@ -1,24 +1,28 @@
 import './Navbar.css'
 import CartWidget from '../CartWidget/CartWidget'
-import { Link } from 'react-router-dom'
-
+import { Link, NavLink } from 'react-router-dom'
+import LogoNav from '../Logos/Logonav'
 
 const Navbar = () => {
 
   return (
-      <nav className="NavBar" >
-          <div className='NavBar'>
-            <Link to="/">
-              <h3>Ecommerce</h3>
-            </Link>
-          </div>
-          <div className="Categories">
-              <Link to='/category/celular' className="Option">Celular</Link>
-              <Link to='/category/tablet' className="Option">Tablet</Link>
-              <Link to='/category/notebook' className="Option">Notebook</Link>
-          </div>
+    <nav className="NavBar" >
+      <div className='NavBar'>
+        <Link to="/">
+          <LogoNav />
+        </Link>
+      </div>
+      <div className="Categories">
+        {/* Con NavLink y className (clases en Navbar.css) destacamos con otro color la categoria activa*/}
+        <NavLink to='/category/souvenirs' className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Souvenirs</NavLink>
+        <NavLink to='/category/bandejas' className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Bandejas</NavLink>
+        <NavLink to='/category/juguetes' className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Juguetes</NavLink>
+        <NavLink to='/category/perfumes' className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Perfumes</NavLink>
+        <NavLink to='/category/papeleria' className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Papeleria para Eventos</NavLink>
+        <NavLink to='/category/lamparas' className={({isActive}) => isActive ? 'ActiveOption' : 'Option'}>Lamparas</NavLink>
+      </div>
           <CartWidget />
-      </nav>
+    </nav>
   )
 }
 

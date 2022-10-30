@@ -1,10 +1,10 @@
 .NavBar {
     display: flex;
-    background: transparent;
+    /* background: transparent; */
     justify-content: space-around;
     align-items: center;
-    height: 60px;
-    background: wheat;
+    height: 90px;
+    /* background: rgb(250, 249, 249); */
   }
   
   .Categories {
@@ -14,15 +14,14 @@
   }
   
   .Option {
-    /* color: #8C30F5; */
     text-decoration: none;
     border-radius: 25;
     margin: 0 50px;
     /* TODO */
     width: auto;
     padding: 12px;
-    font-size: 8px;
-    background: #8C30F5;
+    font-size: 15px;
+    background: #2bd7ea;
     border-radius: 8px;
     flex: none;
     display: flex;
@@ -32,7 +31,7 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #FFFFFF;
+    /* color: #000000; */
     border: none;
     border-style: none;
     cursor: pointer;
@@ -47,8 +46,8 @@
     /* TODO */
     width: auto;
     padding: 12px;
-    font-size: 15px;
-    background: blue;
+    font-size: 18px;
+    background: rgb(226, 245, 118);
     border-radius: 8px;
     flex: none;
     display: flex;
@@ -58,7 +57,7 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #FFFFFF;
+    /* color: #FFFFFF; */
     border: none;
     border-style: none;
     cursor: pointer;
@@ -68,3 +67,15 @@
   .NavLink {
     color :rgb(255, 0, 0)
   }
+
+  .Botones {
+    margin: 40px;
+    width: 250px;
+    color: rgb(246, 249, 248);
+    font-size: 20px;
+    border-style: none;
+    background: #ccb1ea;
+    cursor: pointer;
+    outline: inherit;
+    text-decoration: none;
+}

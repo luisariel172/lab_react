@@ -1,30 +1,12 @@
-import { Link } from "react-router-dom"
+import './ItemList.css'
+import Item from '../Item/Item'
 
-const ItemList = ({ products }) => {    
-
-    const handleClick = (e) => {
-        //detiene la propagacion del evento a los ancestos
-        e.stopPropagation()
-        console.log('hice click en Itemlist')
-    }
-
-    const handleSubmit = (e) => {
-        //detiene la accion por defecto del submit, que es recargar la pagina
-        e.preventDefault()
-
-    }
-
-    return (
-        <div>
-            <ul style={{display: 'flex', flexDirection: 'column', backgroundColor: 'red'}} onClick={handleClick}>
-                { products.map(product => <Link to={`/detail/${product.id}`}key={product.id}>{product.name}</Link>) }
-            </ul>
-            <form onSubmit={handleSubmit}>
-                <input />
-                <button onClick={() => console.log ('submit del form') }>Submit</button>
-            </form>
-        </div>
+const ItemList = ({products }) => {
+    return(
+        <div className='ListGroup' onClick={() => console.log('hice click en itemlist')}>
+            {products.map(prod => <Item key={prod.id} {...prod} />)}
+        </div>    
     )
-} 
+}
 
 export default ItemList

@@ -5,8 +5,8 @@ import { getProduct } from "../../asyncMock"
 import ItemDetail from "../ItemDetail/ItemDetail"
 import { useParams } from "react-router-dom"
 
-
-const ItemDetailContainer = ({ addItem }) => {
+//traigo fn setCart desde App
+const ItemDetailContainer = ({ setCart }) => {
     const [product, setProduct] = useState() //1ra forma de validar p/mostrar detalle de producto, con {}
     const [loading, setLoading] = useState (true) //2da forma de validar ...
     //desestructuro el parametro y le paso productId al getProduct
@@ -24,12 +24,15 @@ const ItemDetailContainer = ({ addItem }) => {
 
     // console.log(product);
 if(loading){
-    return <h1>Cargando ...</h1>
+    return <h1>Cargando producto ...</h1>
 }
 
     return(
         <div className='ItemDetailContainer'>
-           <ItemDetail {...product} addItem={addItem}/> 
+            {/* traigo fn setCart desde App */}
+           <ItemDetail {...product} setCart={setCart}/> 
+           {/*exparsir--> {...product}={name:product.name, img: product.img} */}
+           {/* con {...product} me ahorro de escribir todas las props */}
         </div>
     )
 }

@@ -1,55 +1,46 @@
+import './ItemListContainer.css'
 import { useState, useEffect } from "react";
-import { getProducts } from "../../asyncMock";
+import { getProducts, getProductsByCategory } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
+  //aqui guardo los productos 
   const [products, setProducts] = useState([]);
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-//   const { categoryId } = useParams()
+const { categoryId } = useParams()
 
   useEffect(() => {
-    getProducts()
-      .then((res) => {
-        console.log(res)
-        setProducts(res)
-      })
-      .catch((error) => {
+    setLoading(true)
+    const asyncFunction = categoryId ? getProductsByCategory : getProducts
+
+    asyncFunction(categoryId).then((response) => {
+        // console.log(response)
+        setProducts(response)
+      }).catch((error) => {
         console.log(error)
-        setError(true)
-      })
-      .finally(() => {
+      }).finally(() => {
         setLoading(false)
       })
-  }, [])
-
-//al Event Listener es importante realizarlo dentro de un hook useEffect para 
-//q se cargue despues del montaje y tb p/ poder controlar los estados del
-// ciclo de vida
-useEffect(() =>{
-    const onResize = () => console.log('Cambie de tamaño')
-    window.addEventListener('resize', onResize)
-    //al removeEvLi se lo coloca en el return del useEfecct para q se ejecute cuando el componente se desmonte
-    return () => window.removeEventListener('resize', onResize)
-}, [])
+  }, [categoryId])
 
   // const productosTransformados = products.map(product => <li key={product.id}>{product.name}</li>)
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
+  // if (loading) {
+  //   return <h1>Loading...</h1>;
+  // }
 
-  if (error) {
-    return <h1>Hubo un error</h1>;
-  }
+  // if (error) {
+  //   return <h1>Hubo un error</h1>;
+  // }
 
   return (
-    <div className="ItemListContainer" style={{backgroundColor:'green', height:'100vh' }}onClick={() => console.log('hice click en Itemlistcontainer')}>
-      <h1>{greeting}</h1>
+    <div onClick={() => console.log('Click en Itemlistcontainer')}>
+      <h1>{`${greeting} ${categoryId || ''}`} </h1>
+      {/* <button onClick={(e) => console.log(e)}>Boton</button> */}
       <ItemList products={products} />
     </div>
-  );
-};
+  )
+}
 
 export default ItemListContainer;
