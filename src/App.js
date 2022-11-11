@@ -1,45 +1,23 @@
 import './App.css';
-import { useState, createContext } from 'react';
 import Navbar from './components/Navbar/Navbar'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 //con BrowserRouter le indico cuales son todos los componentes que van a ineractuar, al momento de navegar
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-
+import { CartContextProvider } from './context/CartContext';
 
 //creacion del contexto
 // export const Context = createContext()
-export const CartContext = createContext()
+// export const CartContext = createContext()
 
 
 function App() {
-  const [cart, setCart] = useState([])
-  console.log(cart)
-
-  //fn que va agregando los items al carrito, porq aqui tengo acceso a serCart y cart, si el prod
-  //ya esta en el carrito, no lo agrega
-  const addItem = (productToAdd) => {
-    if(!isInCart(productToAdd.id)){
-      setCart([...cart, productToAdd])
-    }
-  }
-
-//fn q controla si un prod esta en el carrito
-const isInCart = (id) => {
-  return cart.some(prod => prod.id === id)
-}
-
-//fn q elimina prod del carrito
-const removeItem = (id) => {
-  const cardWithoutItem = cart.filter(prod => prod.id !== id)
-  setCart(cardWithoutItem)
-}
 
   return (
     <div className="App">
-    
       {/* <Context.Provider value={{value1:'1st value to share', value2:'2nd value to share'}}> */}
-        <CartContext.Provider value={{addItem, removeItem} }>
+        {/* <CartContext.Provider value={{addItem, removeItem} }> */}
+        <CartContextProvider>
           <BrowserRouter>
             <Navbar />
             <Routes>
@@ -51,7 +29,8 @@ const removeItem = (id) => {
               <Route path='*' element={<h1>404 NOT FOUND</h1>} />
             </Routes>
           </BrowserRouter>
-        </CartContext.Provider>
+          </CartContextProvider>
+        {/* </CartContext.Provider> */}
       {/* </Context.Provider> */}
     
     </div>
@@ -59,4 +38,3 @@ const removeItem = (id) => {
 }
 
 export default App;
- 

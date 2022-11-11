@@ -2,11 +2,16 @@ import './ItemDetail.css'
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
+import { CartContext } from '../../context/CartContext'
 
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     const [quantityToAdd, setQuantityToAdd] = useState(0)
-
-    // const { addItem } = useContext(CartContext)
+   
+    //paso la fn addItem del objeto que devuelve  el CartContext, x lo tanto desesctructuro el objeto
+    const { addItem } = useContext(CartContext)
+    
+    const value = useContext(CartContext)
+    // console.log(value)
 
     const handleOnAdd = (quantity) => {
         setQuantityToAdd(quantity)
@@ -14,8 +19,8 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
         const productToAdd = {
             id, name, price, quantity
         }
-
-        // addItem(productToAdd)
+        //uso la fn addItem pasandole productToAdd, que es el producto a agregar al CARRITO
+        addItem(productToAdd)
     }
 
     return (
