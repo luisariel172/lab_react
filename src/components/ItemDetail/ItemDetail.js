@@ -3,12 +3,14 @@ import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 import { CartContext } from '../../context/CartContext'
+import { NotificationContext } from '../../notification/Notification'
 
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     const [quantityToAdd, setQuantityToAdd] = useState(0)
    
     //paso la fn addItem del objeto que devuelve  el CartContext, x lo tanto desesctructuro el objeto
     const { addItem } = useContext(CartContext)
+    const { setNotification } = useContext(NotificationContext)
     
     const value = useContext(CartContext)
     // console.log(value)
@@ -21,6 +23,8 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
         }
         //uso la fn addItem pasandole productToAdd, que es el producto a agregar al CARRITO
         addItem(productToAdd)
+        //uso la fn setNotificacion para pasar el mje del prod que se acaba de agregar
+        setNotification('success', `Se agrego al carrito ${quantity} ${name}`)
     }
 
     return (

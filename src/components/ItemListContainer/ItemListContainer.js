@@ -26,9 +26,9 @@ const { categoryId } = useParams()
   }, [categoryId])
 
   // const productosTransformados = products.map(product => <li key={product.id}>{product.name}</li>)
-  // if (loading) {
-  //   return <h1>Loading...</h1>;
-  // }
+  if (loading && true) {
+    return <h1>Cargando productos...</h1>;
+  }
 
   // if (error) {
   //   return <h1>Hubo un error</h1>;
