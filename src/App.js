@@ -27,6 +27,7 @@ function App() {
                 {/*con : indico que hay un valor dinamico, que no va a ser siempre el mismo*/}
                 <Route path='/detail/:productId' element={<ItemDetailContainer/>} />
                 {/*Path con *, p/ q todos los links q no figuren, pasen a una simulacion de error 404  */}
+                <Route path='/cart' element={<h1>CARRITO DE COMPRAS</h1>} />
                 <Route path='*' element={<h1>404 NOT FOUND</h1>} />
             </Routes>
           </BrowserRouter>
